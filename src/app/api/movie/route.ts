@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { API_BASE_URL, API_VERSION, API_ENDPOINTS } from '@/constants';
+import { API_BASE_URL, API_VERSION, API_ENDPOINTS } from '@/constants/api';
 
 export async function GET(req: NextRequest) {
   const { API_ACCESS_TOKEN } = process.env;
