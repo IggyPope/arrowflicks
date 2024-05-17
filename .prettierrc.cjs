@@ -8,7 +8,14 @@ module.exports = {
   semi: true,
   singleQuote: true,
   endOfLine: 'lf',
-  importOrder: ['^react(.*)', 'mantine/(.*)', '<THIRD_PARTY_MODULES>', '@/(.*)', '^[./]'],
+  importOrder: [
+    '^react(.*)',
+    '^next(.*)',
+    '^@mantine/(.*)',
+    '<THIRD_PARTY_MODULES>',
+    '@/(.*)',
+    '^[./]',
+  ],
   importOrderSeparation: true,
   plugins: ['@trivago/prettier-plugin-sort-imports'],
 };

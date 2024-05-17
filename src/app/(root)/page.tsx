@@ -1,9 +1,9 @@
-import { Text } from '@mantine/core';
+import { Title } from '@mantine/core';
 
 export default function HomePage() {
   return (
     <>
-      <Text>Movies</Text>
+      <Title>Movies</Title>
     </>
   );
 }
