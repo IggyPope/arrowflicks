@@ -10,6 +10,7 @@ import { NavLink } from '@/components/NavLink/NavLink';
 
 export default function MainLayout({ children }: { children: any }) {
   const [opened, { toggle }] = useDisclosure();
+
   const theme = useMantineTheme();
 
   return (
@@ -21,14 +22,17 @@ export default function MainLayout({ children }: { children: any }) {
         opened={opened}
         onClick={toggle}
         hiddenFrom="sm"
-        size="sm"
-        style={{ position: 'absolute' }}
+        size="md"
+        pos="absolute"
+        right="24px"
+        top="24px"
+        style={{ zIndex: 999 }}
       />
       <AppShell.Navbar p="xl" bg={theme.colors.purple[1]} withBorder={false}>
         <Stack gap="80px">
           <Logo />
           <Stack gap="md">
-            <NavLink href="/">Movies</NavLink>
+            <NavLink href="/movies">Movies</NavLink>
             <NavLink href="/rated">Rated movies</NavLink>
           </Stack>
         </Stack>
