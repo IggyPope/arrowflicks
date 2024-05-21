@@ -14,9 +14,10 @@ export const themeOverride = createTheme({
     md: '16px',
     lg: '20px',
     xl: '24px',
+    xxl: '40px',
   },
   fontSizes: {
-    xs: rem('12px'),
+    xs: rem('14px'),
     sm: rem('16px'),
     md: rem('20px'),
     lg: rem('24px'),
@@ -55,6 +56,7 @@ export const themeOverride = createTheme({
       '#505363',
     ],
   },
+  defaultRadius: 'md',
   primaryShade: 5,
   components: {
     Button: {

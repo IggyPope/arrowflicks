@@ -1,6 +1,6 @@
 import { useMantineTheme } from '@mantine/core';
 
-export const ArrowsIcon = () => {
+const ArrowsIcon = () => {
   const theme = useMantineTheme();
 
   return (
@@ -32,3 +32,5 @@ export const ArrowsIcon = () => {
     </svg>
   );
 };
+
+export default ArrowsIcon;

@@ -1,5 +1,5 @@
 .buttonOverrides {
-  &:active {
+  &:active:not(:disabled) {
     background-color: var(--button-active);
   }
 }

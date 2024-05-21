@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { API_BASE_URL, API_VERSION, API_ENDPOINTS } from '@/constants/api';
+import { API_ENDPOINTS, API_LANGUAGE } from '@/constants/api';
 
-export async function GET(req: NextRequest) {
+export const GET = async (req: NextRequest) => {
   const { API_ACCESS_TOKEN } = process.env;
 
   if (!API_ACCESS_TOKEN) {
@@ -10,9 +10,9 @@ export async function GET(req: NextRequest) {
   }
 
   const { searchParams } = new URL(req.url);
-  const movieId = searchParams.get('movie_id');
+  searchParams.set('language', API_LANGUAGE);
 
-  const response = await fetch(`${API_BASE_URL}/${API_VERSION}/${API_ENDPOINTS.MOVIE}/${movieId}`, {
+  const response = await fetch(`${API_ENDPOINTS.GENRES}?${searchParams}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${API_ACCESS_TOKEN}`,
@@ -22,4 +22,4 @@ export async function GET(req: NextRequest) {
   const data = await response.json();
 
   return NextResponse.json(data);
-}
+};

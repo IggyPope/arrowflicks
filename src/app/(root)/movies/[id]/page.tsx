@@ -1,9 +1,9 @@
 import { Title } from '@mantine/core';
 
-export default function MoviePage({ params }: { params: { id: string } }) {
-  return (
-    <>
-      <Title>Movies: {params.id}</Title>
-    </>
-  );
-}
+const MoviePage = ({ params }: { params: { id: string } }) => (
+  <>
+    <Title>Movies: {params.id}</Title>
+  </>
+);
+
+export default MoviePage;

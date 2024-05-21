@@ -1,9 +1,9 @@
 import { Title } from '@mantine/core';
 
-export default function HomePage() {
-  return (
-    <>
-      <Title>Rated movies</Title>
-    </>
-  );
-}
+const RatedPage = () => (
+  <>
+    <Title>Rated movies</Title>
+  </>
+);
+
+export default RatedPage;

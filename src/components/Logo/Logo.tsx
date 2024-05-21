@@ -3,14 +3,14 @@ import Link from 'next/link';
 
 import { Group, Text, useMantineTheme } from '@mantine/core';
 
-import { ArrowsIcon } from '../icons/ArrowsIcon';
+import ArrowsIcon from '../icons/ArrowsIcon';
 
 const poppins = Poppins({
   weight: '600',
   subsets: ['latin'],
 });
 
-export const Logo = () => {
+const Logo = () => {
   const theme = useMantineTheme();
 
   return (
@@ -32,3 +32,5 @@ export const Logo = () => {
     </Link>
   );
 };
+
+export default Logo;

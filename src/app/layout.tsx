@@ -15,26 +15,26 @@ export const metadata = {
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function RootLayout({ children }: { children: any }) {
-  return (
-    <html lang="en">
-      <head>
-        <ColorSchemeScript forceColorScheme="light" />
-        <link rel="shortcut icon" href="/favicon.svg" />
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
-        />
-      </head>
-      <body className={inter.className}>
-        <MantineProvider
-          forceColorScheme="light"
-          theme={themeOverride}
-          cssVariablesResolver={resolver}
-        >
-          {children}
-        </MantineProvider>
-      </body>
-    </html>
-  );
-}
+const RootLayout = ({ children }: { children: React.ReactNode }) => (
+  <html lang="en">
+    <head>
+      <ColorSchemeScript forceColorScheme="light" />
+      <link rel="shortcut icon" href="/favicon.svg" />
+      <meta
+        name="viewport"
+        content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+      />
+    </head>
+    <body className={inter.className}>
+      <MantineProvider
+        forceColorScheme="light"
+        theme={themeOverride}
+        cssVariablesResolver={resolver}
+      >
+        {children}
+      </MantineProvider>
+    </body>
+  </html>
+);
+
+export default RootLayout;
