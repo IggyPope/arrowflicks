@@ -8,6 +8,8 @@ import '@mantine/core/styles.css';
 import '@/styles/globals.css';
 import { themeOverride, resolver } from '@/styles/theme';
 
+import StoreProvider from './StoreProvider';
+
 export const metadata = {
   title: 'ArrowFlicks',
   description: 'ArrowFlicks - the ultimate movie search app!',
@@ -31,7 +33,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
         theme={themeOverride}
         cssVariablesResolver={resolver}
       >
-        {children}
+        <StoreProvider>{children}</StoreProvider>
       </MantineProvider>
     </body>
   </html>

@@ -1,40 +1,35 @@
-import { useEffect, useState } from 'react';
-
-import { MultiSelect } from '@mantine/core';
+import { Loader, MultiSelect } from '@mantine/core';
 
 import ChevronIcon from '@/components/icons/ChevronIcon';
+import { useGetGenresQuery } from '@/services/moviesApi';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { setGenres } from '@/store/slices/filtersSlice';
+import { Genre } from '@/types';
 
 import commonClasses from '../MoviesFilters.module.css';
 import classes from './GenresFilter.module.css';
 
 const GenresFilter = () => {
-  const [genres, setGenres] = useState<Array<{ value: string; label: string }>>([]);
-  const [selectedGenres, setSelectedGenres] = useState<Array<string>>([]);
+  const selectedGenres = useAppSelector((state) => state.filters.selectedGenres);
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    fetch('http://localhost:3000/api/genres', {
-      method: 'GET',
-    })
-      .then((res) => res.json())
-      .then((data) =>
-        setGenres(
-          data.genres.map((genre: { id: number; name: string }) => ({
-            value: genre.id.toString(),
-            label: genre.name,
-          }))
-        )
-      );
-  }, []);
+  const { data, isLoading } = useGetGenresQuery();
 
   return (
     <MultiSelect
       label="Genres"
       placeholder={selectedGenres.length ? '' : 'Select genre'}
-      data={genres}
+      data={
+        data &&
+        data.genres.map((genre: Genre) => ({
+          value: genre.id.toString(),
+          label: genre.name,
+        }))
+      }
       value={selectedGenres}
-      onChange={setSelectedGenres}
+      onChange={(genres: string[]) => dispatch(setGenres(genres))}
       withCheckIcon={false}
-      rightSection={<ChevronIcon />}
+      rightSection={isLoading ? <Loader size="xs" /> : <ChevronIcon />}
       classNames={{
         root: commonClasses.filterRoot,
         wrapper: commonClasses.filterWrapper,
