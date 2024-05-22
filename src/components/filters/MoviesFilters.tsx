@@ -1,11 +1,12 @@
 'use client';
 
-import { Button, Flex, NumberInput, Select, Stack } from '@mantine/core';
+import { Button, Flex, Select, Stack } from '@mantine/core';
 
 import { API_SORT_OPTIONS } from '@/constants/api';
 
 import GenresFilter from './GenresFilter/GenresFilter';
 import classes from './MoviesFilters.module.css';
+import RatingsFilter from './RatingsFilter/RatingsFilter';
 import ReleaseYearFilter from './ReleaseYearFilter/ReleaseYearFilter';
 
 const MoviesFilters = () => (
@@ -13,21 +14,7 @@ const MoviesFilters = () => (
     <Flex gap="md" align="flex-end">
       <GenresFilter />
       <ReleaseYearFilter />
-      <Flex gap="xxs" align="flex-end">
-        <NumberInput
-          label="Ratings"
-          placeholder="From"
-          classNames={{
-            root: classes.filterRoot,
-            label: classes.filterLabel,
-            input: classes.inputRoot,
-          }}
-        />
-        <NumberInput
-          placeholder="To"
-          classNames={{ root: classes.filterRoot, input: classes.inputRoot }}
-        />
-      </Flex>
+      <RatingsFilter />
       <Button variant="transparent" className={classes.resetButton}>
         Reset filters
       </Button>

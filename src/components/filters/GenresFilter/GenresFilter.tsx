@@ -4,7 +4,6 @@ import ChevronIcon from '@/components/icons/ChevronIcon';
 import { useGetGenresQuery } from '@/services/moviesApi';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setGenres } from '@/store/slices/filtersSlice';
-import { Genre } from '@/types';
 
 import commonClasses from '../MoviesFilters.module.css';
 import classes from './GenresFilter.module.css';
@@ -19,13 +18,7 @@ const GenresFilter = () => {
     <MultiSelect
       label="Genres"
       placeholder={selectedGenres.length ? '' : 'Select genre'}
-      data={
-        data &&
-        data.genres.map((genre: Genre) => ({
-          value: genre.id.toString(),
-          label: genre.name,
-        }))
-      }
+      data={data?.genres}
       value={selectedGenres}
       onChange={(genres: string[]) => dispatch(setGenres(genres))}
       withCheckIcon={false}
