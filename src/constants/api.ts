@@ -18,3 +18,5 @@ export const API_SORT_OPTIONS = [
   { value: 'vote_count.desc', label: 'Most Voted' },
   { value: 'vote_count.asc', label: 'Least Voted' },
 ] as const;
+
+export const DEFAULT_SORT_OPTION = API_SORT_OPTIONS[0].value;

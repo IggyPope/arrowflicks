@@ -1,11 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+import { API_SORT_OPTIONS, DEFAULT_SORT_OPTION } from '@/constants/api';
+
 interface FiltersState {
   selectedGenres: Array<string>;
   selectedYear: string | null;
   ratingFrom: number | undefined;
   ratingTo: number | undefined;
+  sortBy: (typeof API_SORT_OPTIONS)[number]['value'];
 }
 
 const initialState: FiltersState = {
@@ -13,6 +16,7 @@ const initialState: FiltersState = {
   selectedYear: null,
   ratingFrom: undefined,
   ratingTo: undefined,
+  sortBy: DEFAULT_SORT_OPTION,
 };
 
 export const filtersSlice = createSlice({
@@ -22,7 +26,7 @@ export const filtersSlice = createSlice({
     setGenres: (state, action: PayloadAction<Array<string>>) => {
       state.selectedGenres = action.payload;
     },
-    setYear: (state, action: PayloadAction<string | null>) => {
+    setReleaseYear: (state, action: PayloadAction<string | null>) => {
       state.selectedYear = action.payload;
     },
     setRatingFrom: (state, action: PayloadAction<number | undefined>) => {
@@ -31,9 +35,16 @@ export const filtersSlice = createSlice({
     setRatingTo: (state, action: PayloadAction<number | undefined>) => {
       state.ratingTo = action.payload;
     },
+    setSortBy: (
+      state,
+      action: PayloadAction<(typeof API_SORT_OPTIONS)[number]['value'] | null>
+    ) => {
+      state.sortBy = action.payload || DEFAULT_SORT_OPTION;
+    },
   },
 });
 
-export const { setGenres, setYear, setRatingFrom, setRatingTo } = filtersSlice.actions;
+export const { setGenres, setReleaseYear, setRatingFrom, setRatingTo, setSortBy } =
+  filtersSlice.actions;
 
 export default filtersSlice.reducer;

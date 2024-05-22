@@ -4,7 +4,7 @@ import { Select } from '@mantine/core';
 
 import ChevronIcon from '@/components/icons/ChevronIcon';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setYear } from '@/store/slices/filtersSlice';
+import { setReleaseYear } from '@/store/slices/filtersSlice';
 import { getYearsFilterOptions } from '@/utils/filters';
 
 import commonClasses from '../MoviesFilters.module.css';
@@ -25,7 +25,7 @@ const ReleaseYearFilter = () => {
       placeholder="Select release year"
       data={yearOptions}
       value={selectedYear}
-      onChange={(year: string | null) => dispatch(setYear(year))}
+      onChange={(year: string | null) => dispatch(setReleaseYear(year))}
       withCheckIcon={false}
       rightSection={<ChevronIcon />}
       classNames={{

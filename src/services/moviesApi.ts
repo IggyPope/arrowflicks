@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_BASE_URL, API_ROUTES } from '@/constants/app';
 import { Genre } from '@/types';
 
-type GenresDTO = {
+type Genres = {
   genres: Array<Genre>;
 };
 
@@ -17,7 +17,7 @@ export const moviesApi = createApi({
     baseUrl: API_BASE_URL,
   }),
   endpoints: (builder) => ({
-    getGenres: builder.query<GenresDTO, void>({
+    getGenres: builder.query<Genres, void>({
       query: () => API_ROUTES.GENRES,
       transformResponse: (response: GenresResponse) => {
         const genres =

@@ -1,13 +1,12 @@
 'use client';
 
-import { Button, Flex, Select, Stack } from '@mantine/core';
-
-import { API_SORT_OPTIONS } from '@/constants/api';
+import { Button, Flex, Stack } from '@mantine/core';
 
 import GenresFilter from './GenresFilter/GenresFilter';
 import classes from './MoviesFilters.module.css';
 import RatingsFilter from './RatingsFilter/RatingsFilter';
 import ReleaseYearFilter from './ReleaseYearFilter/ReleaseYearFilter';
+import SortBy from './SortBy/SortBy';
 
 const MoviesFilters = () => (
   <Stack gap="xl">
@@ -20,15 +19,7 @@ const MoviesFilters = () => (
       </Button>
     </Flex>
     <Flex justify="flex-end">
-      <Select
-        label="Sort by"
-        data={API_SORT_OPTIONS}
-        classNames={{
-          root: classes.filterRoot,
-          label: classes.filterLabel,
-          input: classes.inputRoot,
-        }}
-      />
+      <SortBy />
     </Flex>
   </Stack>
 );
