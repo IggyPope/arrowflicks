@@ -4,21 +4,15 @@
   font-size: var(--mantine-font-size-xs);
   background: none;
 
-  &:not(:first-child) {
-    &::before {
+  &:not(:last-of-type) {
+    &::after {
       content: ', ';
       margin-right: 3px;
     }
   }
 
   & button {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-
-    & svg {
-      display: none;
-    }
+    display: none;
   }
 }
 

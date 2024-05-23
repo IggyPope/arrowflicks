@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { API_SORT_OPTIONS, DEFAULT_SORT_OPTION } from '@/constants/api';
+import { MAX_RATING } from '@/constants/app';
 
 interface FiltersState {
   selectedGenres: Array<string>;
@@ -31,9 +32,70 @@ export const filtersSlice = createSlice({
     },
     setRatingFrom: (state, action: PayloadAction<number | undefined>) => {
       state.ratingFrom = action.payload;
+
+      if (
+        action.payload !== undefined &&
+        state.ratingTo !== undefined &&
+        action.payload > state.ratingTo
+      ) {
+        state.ratingTo = action.payload;
+      }
+    },
+    incrementRatingFrom: (state) => {
+      if (state.ratingFrom === undefined) {
+        state.ratingFrom = 0;
+        return;
+      }
+      if (state.ratingFrom < MAX_RATING) {
+        state.ratingFrom += 1;
+      }
+      if (state.ratingTo !== undefined && state.ratingFrom > state.ratingTo) {
+        state.ratingTo = state.ratingFrom;
+      }
+    },
+    decrementRatingFrom: (state) => {
+      if (state.ratingFrom === undefined) {
+        return;
+      }
+      if (state.ratingFrom === 0) {
+        state.ratingFrom = undefined;
+        return;
+      }
+      state.ratingFrom -= 1;
     },
     setRatingTo: (state, action: PayloadAction<number | undefined>) => {
       state.ratingTo = action.payload;
+
+      if (
+        state.ratingFrom !== undefined &&
+        action.payload !== undefined &&
+        action.payload < state.ratingFrom
+      ) {
+        state.ratingFrom = action.payload;
+      }
+    },
+    incrementRatingTo: (state) => {
+      if (state.ratingTo === undefined) {
+        state.ratingTo = Math.max(0, state.ratingFrom ?? 0);
+        return;
+      }
+      if (state.ratingTo < MAX_RATING) {
+        state.ratingTo += 1;
+      }
+    },
+    decrementRatingTo: (state) => {
+      if (state.ratingTo === undefined) {
+        return;
+      }
+      if (state.ratingTo === 0) {
+        state.ratingTo = undefined;
+        return;
+      }
+      state.ratingTo -= 1;
+
+      if (state.ratingFrom !== undefined && state.ratingTo < state.ratingFrom) {
+        state.ratingFrom = state.ratingTo;
+      }
     },
     setSortBy: (
       state,
@@ -41,10 +103,27 @@ export const filtersSlice = createSlice({
     ) => {
       state.sortBy = action.payload || DEFAULT_SORT_OPTION;
     },
+    resetFilters: (state) => {
+      state.selectedGenres = initialState.selectedGenres;
+      state.selectedYear = initialState.selectedYear;
+      state.ratingFrom = initialState.ratingFrom;
+      state.ratingTo = initialState.ratingTo;
+      state.sortBy = initialState.sortBy;
+    },
   },
 });
 
-export const { setGenres, setReleaseYear, setRatingFrom, setRatingTo, setSortBy } =
-  filtersSlice.actions;
+export const {
+  setGenres,
+  setReleaseYear,
+  setRatingFrom,
+  incrementRatingFrom,
+  decrementRatingFrom,
+  setRatingTo,
+  incrementRatingTo,
+  decrementRatingTo,
+  setSortBy,
+  resetFilters,
+} = filtersSlice.actions;
 
 export default filtersSlice.reducer;

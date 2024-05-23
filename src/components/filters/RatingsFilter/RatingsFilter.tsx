@@ -1,36 +1,36 @@
-import { Flex, NumberInput } from '@mantine/core';
+import { Flex } from '@mantine/core';
 
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setRatingFrom, setRatingTo } from '@/store/slices/filtersSlice';
+import { useAppSelector } from '@/store/hooks';
+import {
+  decrementRatingFrom,
+  decrementRatingTo,
+  incrementRatingFrom,
+  incrementRatingTo,
+  setRatingFrom,
+  setRatingTo,
+} from '@/store/slices/filtersSlice';
 
-import commonClasses from '../MoviesFilters.module.css';
+import RatingInput from './RatingInput/RatingInput';
 
 const RatingsFilter = () => {
   const { ratingFrom, ratingTo } = useAppSelector((state) => state.filters);
-  const dispatch = useAppDispatch();
 
   return (
     <Flex gap="xxs" align="flex-end">
-      <NumberInput
+      <RatingInput
         label="Ratings"
-        placeholder="From"
-        value={ratingFrom}
-        onChange={(value) => dispatch(setRatingFrom(Number(value)))}
-        classNames={{
-          root: commonClasses.filterRoot,
-          label: commonClasses.filterLabel,
-          input: commonClasses.inputRoot,
-        }}
-        min={0}
-        max={10}
+        placeHolder="From"
+        controlledValue={ratingFrom}
+        setValueAction={setRatingFrom}
+        incrementAction={incrementRatingFrom}
+        decrementAction={decrementRatingFrom}
       />
-      <NumberInput
-        placeholder="To"
-        value={ratingTo}
-        onChange={(value) => dispatch(setRatingTo(Number(value)))}
-        classNames={{ root: commonClasses.filterRoot, input: commonClasses.inputRoot }}
-        min={0}
-        max={10}
+      <RatingInput
+        placeHolder="To"
+        controlledValue={ratingTo}
+        setValueAction={setRatingTo}
+        incrementAction={incrementRatingTo}
+        decrementAction={decrementRatingTo}
       />
     </Flex>
   );
