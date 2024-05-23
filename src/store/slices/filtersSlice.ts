@@ -10,6 +10,7 @@ interface FiltersState {
   ratingFrom: number | undefined;
   ratingTo: number | undefined;
   sortBy: (typeof API_SORT_OPTIONS)[number]['value'];
+  page: number;
 }
 
 const initialState: FiltersState = {
@@ -18,6 +19,7 @@ const initialState: FiltersState = {
   ratingFrom: undefined,
   ratingTo: undefined,
   sortBy: DEFAULT_SORT_OPTION,
+  page: 1,
 };
 
 export const filtersSlice = createSlice({
@@ -103,12 +105,16 @@ export const filtersSlice = createSlice({
     ) => {
       state.sortBy = action.payload || DEFAULT_SORT_OPTION;
     },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.page = action.payload;
+    },
     resetFilters: (state) => {
       state.selectedGenres = initialState.selectedGenres;
       state.selectedYear = initialState.selectedYear;
       state.ratingFrom = initialState.ratingFrom;
       state.ratingTo = initialState.ratingTo;
       state.sortBy = initialState.sortBy;
+      state.page = initialState.page;
     },
   },
 });
@@ -123,6 +129,7 @@ export const {
   incrementRatingTo,
   decrementRatingTo,
   setSortBy,
+  setPage,
   resetFilters,
 } = filtersSlice.actions;
 

@@ -2,9 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { API_ENDPOINTS, API_LANGUAGE } from '@/constants/api';
 
-export const GET = async (req: NextRequest, { params }: { params: { id: string } }) => {
+export const dynamic = 'force-dynamic';
+
+export const GET = async (req: NextRequest) => {
   const { API_ACCESS_TOKEN } = process.env;
-  const { id } = params;
 
   if (!API_ACCESS_TOKEN) {
     return NextResponse.json({ error: 'Access token is missing. Check .env variables.' });
@@ -12,9 +13,8 @@ export const GET = async (req: NextRequest, { params }: { params: { id: string }
 
   const { searchParams } = new URL(req.url);
   searchParams.set('language', API_LANGUAGE);
-  searchParams.set('append_to_response', 'videos');
 
-  const response = await fetch(`${API_ENDPOINTS.MOVIE}/${id}?${searchParams}`, {
+  const response = await fetch(`${API_ENDPOINTS.DISCOVER}?${searchParams}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${API_ACCESS_TOKEN}`,
