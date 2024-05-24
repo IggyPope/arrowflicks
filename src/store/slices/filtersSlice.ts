@@ -28,11 +28,14 @@ export const filtersSlice = createSlice({
   reducers: {
     setGenres: (state, action: PayloadAction<Array<string>>) => {
       state.selectedGenres = action.payload;
+      state.page = 1;
     },
     setReleaseYear: (state, action: PayloadAction<string | null>) => {
       state.selectedYear = action.payload;
+      state.page = 1;
     },
     setRatingFrom: (state, action: PayloadAction<number | undefined>) => {
+      state.page = 1;
       state.ratingFrom = action.payload;
 
       if (
@@ -44,6 +47,7 @@ export const filtersSlice = createSlice({
       }
     },
     incrementRatingFrom: (state) => {
+      state.page = 1;
       if (state.ratingFrom === undefined) {
         state.ratingFrom = 0;
         return;
@@ -56,6 +60,7 @@ export const filtersSlice = createSlice({
       }
     },
     decrementRatingFrom: (state) => {
+      state.page = 1;
       if (state.ratingFrom === undefined) {
         return;
       }
@@ -66,6 +71,7 @@ export const filtersSlice = createSlice({
       state.ratingFrom -= 1;
     },
     setRatingTo: (state, action: PayloadAction<number | undefined>) => {
+      state.page = 1;
       state.ratingTo = action.payload;
 
       if (
@@ -77,6 +83,7 @@ export const filtersSlice = createSlice({
       }
     },
     incrementRatingTo: (state) => {
+      state.page = 1;
       if (state.ratingTo === undefined) {
         state.ratingTo = Math.max(0, state.ratingFrom ?? 0);
         return;
@@ -86,6 +93,7 @@ export const filtersSlice = createSlice({
       }
     },
     decrementRatingTo: (state) => {
+      state.page = 1;
       if (state.ratingTo === undefined) {
         return;
       }
@@ -103,6 +111,7 @@ export const filtersSlice = createSlice({
       state,
       action: PayloadAction<(typeof API_SORT_OPTIONS)[number]['value'] | null>
     ) => {
+      state.page = 1;
       state.sortBy = action.payload || DEFAULT_SORT_OPTION;
     },
     setPage: (state, action: PayloadAction<number>) => {
@@ -113,6 +122,7 @@ export const filtersSlice = createSlice({
       state.selectedYear = initialState.selectedYear;
       state.ratingFrom = initialState.ratingFrom;
       state.ratingTo = initialState.ratingTo;
+      state.page = 1;
     },
   },
 });
