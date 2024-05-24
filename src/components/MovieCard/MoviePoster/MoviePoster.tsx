@@ -1,6 +1,5 @@
-import Image from 'next/image';
+import { Image } from '@mantine/core';
 
-import blurImage from '@/assets/images/blur.png';
 import noPosterImage from '@/assets/images/no_poster.png';
 import { API_BASE_URL, API_ROUTES } from '@/constants/app';
 import { Movie, MovieDetails } from '@/types';
@@ -12,11 +11,10 @@ interface MoviePosterProps {
 
 const MoviePoster = ({ movie, size = 'sm' }: MoviePosterProps) => (
   <Image
-    width={size === 'sm' ? 119 : 250}
-    height={size === 'sm' ? 170 : 352}
+    w={size === 'sm' ? 119 : 250}
+    h={size === 'sm' ? 170 : 352}
     alt={movie.original_title}
-    placeholder="blur"
-    blurDataURL={blurImage.blurDataURL}
+    fallbackSrc={noPosterImage.src}
     src={
       movie.poster_path ? `${API_BASE_URL}${API_ROUTES.IMAGES}${movie.poster_path}` : noPosterImage
     }
