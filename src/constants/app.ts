@@ -10,6 +10,7 @@ export const API_ROUTES = {
   MOVIES: '/movies',
   GENRES: '/genres',
   IMAGES: '/images',
+  LOGOS: '/logos',
 } as const;
 
 export const MAX_RATING = 10;

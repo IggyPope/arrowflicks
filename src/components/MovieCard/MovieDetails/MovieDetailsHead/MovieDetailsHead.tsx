@@ -2,11 +2,11 @@ import { Group, Paper, Stack } from '@mantine/core';
 
 import { MovieDetails } from '@/types';
 
-import RateButton from '../../buttons/RateButton/RateButton';
-import MoviePoster from '../MoviePoster/MoviePoster';
-import MovieTitle from '../MovieTitle/MovieTitle';
-import RatingBadge from '../RatingBadge/RatingBadge';
-import ReleaseYear from '../ReleaseYear/ReleaseYear';
+import RateButton from '../../../buttons/RateButton/RateButton';
+import MoviePoster from '../../MoviePoster/MoviePoster';
+import MovieTitle from '../../MovieTitle/MovieTitle';
+import RatingBadge from '../../RatingBadge/RatingBadge';
+import ReleaseYear from '../../ReleaseYear/ReleaseYear';
 import DetailsGenresList from './DetailsGenresList';
 import Duration from './Duration';
 import MoneyValue from './MoneyValue';
@@ -18,7 +18,7 @@ interface MovieDetailsHeadProps {
 }
 
 const MovieDetailsHead = ({ movie }: MovieDetailsHeadProps) => (
-  <Paper maw={800} w="100%" h={400} p="xl" classNames={{ root: classes.paperHead }}>
+  <Paper maw={800} w="100%" h={400} p="xl" classNames={{ root: classes.root }}>
     <Group flex="1 0 0" justify="space-between" align="flex-start" gap="md" wrap="nowrap">
       <Group h="100%" justify="space-between" align="flex-start" gap="md" wrap="nowrap">
         <MoviePoster movie={movie} size="lg" />

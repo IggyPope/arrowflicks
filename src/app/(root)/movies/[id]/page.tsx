@@ -2,7 +2,8 @@
 
 import { Anchor, Breadcrumbs, Stack, Title } from '@mantine/core';
 
-import MovieDetailsHead from '@/components/MovieCard/MovieDetails/MovieDetailsHead';
+import MovieDetailsBody from '@/components/MovieCard/MovieDetails/MovieDetailsBody/MovieDetailsBody';
+import MovieDetailsHead from '@/components/MovieCard/MovieDetails/MovieDetailsHead/MovieDetailsHead';
 import { APP_ROUTES } from '@/constants/app';
 import { useGetMovieDetailsQuery } from '@/services/moviesApi';
 
@@ -21,6 +22,7 @@ const MoviePage = ({ params }: { params: { id: string } }) => {
           </Anchor>
         </Breadcrumbs>
         <MovieDetailsHead movie={data} />
+        <MovieDetailsBody movie={data} />
       </Stack>
     );
   }

@@ -43,7 +43,9 @@ export interface MovieDetails {
   revenue: number;
   overview: string;
   production_companies: Array<ProductionCompany>;
-  videos: Array<MovieVideo>;
+  videos: {
+    results: Array<MovieVideo>;
+  };
   vote_average: number;
   vote_count: number;
   genres: Array<GenreResponse>;
