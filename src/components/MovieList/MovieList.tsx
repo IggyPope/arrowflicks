@@ -1,3 +1,5 @@
+import { SimpleGrid } from '@mantine/core';
+
 import { useGetFilteredMoviesQuery } from '@/services/moviesApi';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setPage } from '@/store/slices/filtersSlice';
@@ -6,7 +8,9 @@ import CustomPagination from '../CustomPagination/CustomPagination';
 import MovieCard from '../MovieCard/MovieCard';
 
 const MovieList = () => {
-  const page = useAppSelector((state) => state.filters.page);
+  const { selectedGenres, selectedYear, ratingFrom, ratingTo, sortBy, page } = useAppSelector(
+    (state) => state.filters
+  );
 
   const dispatch = useAppDispatch();
 
@@ -14,11 +18,20 @@ const MovieList = () => {
     dispatch(setPage(currentPage));
   };
 
-  const { data: moviesResponse, isLoading } = useGetFilteredMoviesQuery(page);
+  const { data: moviesResponse, isLoading } = useGetFilteredMoviesQuery({
+    selectedGenres,
+    selectedYear,
+    ratingFrom,
+    ratingTo,
+    sortBy,
+    page,
+  });
 
   return (
     <>
-      {moviesResponse?.results?.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+      <SimpleGrid cols={2} spacing="md">
+        {moviesResponse?.results?.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+      </SimpleGrid>
       <CustomPagination
         page={page}
         setPage={setCurrentPage}

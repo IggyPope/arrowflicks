@@ -4,7 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { API_SORT_OPTIONS, DEFAULT_SORT_OPTION } from '@/constants/api';
 import { MAX_RATING } from '@/constants/app';
 
-interface FiltersState {
+export interface FiltersState {
   selectedGenres: Array<string>;
   selectedYear: string | null;
   ratingFrom: number | undefined;

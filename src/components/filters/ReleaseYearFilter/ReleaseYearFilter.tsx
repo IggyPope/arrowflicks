@@ -5,7 +5,7 @@ import { Select } from '@mantine/core';
 import ChevronIcon from '@/components/icons/ChevronIcon';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setReleaseYear } from '@/store/slices/filtersSlice';
-import { getYearsFilterOptions } from '@/utils/filters';
+import { getYearsFilterOptions } from '@/utils/helpers';
 
 import commonClasses from '../MoviesFilters.module.css';
 
