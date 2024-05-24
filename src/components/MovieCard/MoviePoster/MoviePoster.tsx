@@ -16,7 +16,9 @@ const MoviePoster = ({ movie, size = 'sm' }: MoviePosterProps) => (
     alt={movie.original_title}
     fallbackSrc={noPosterImage.src}
     src={
-      movie.poster_path ? `${API_BASE_URL}${API_ROUTES.IMAGES}${movie.poster_path}` : noPosterImage
+      movie.poster_path
+        ? `${API_BASE_URL}${API_ROUTES.IMAGES}${movie.poster_path}`
+        : noPosterImage.src
     }
   />
 );
