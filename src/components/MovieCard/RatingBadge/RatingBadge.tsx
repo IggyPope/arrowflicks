@@ -16,7 +16,7 @@ const RatingBadge = ({ voteAverage, voteCount }: RatingBadgeProps) => {
       <Group gap={4}>
         <StarIcon fillColor="yellow" />
         <Text fz="sm" fw={600} lh="xs">
-          {voteAverage.toFixed(1)}
+          {voteAverage ? voteAverage.toFixed(1) : '0.0'}
         </Text>
       </Group>
       <Text c={theme.colors.grey[6]} fz="sm" fw={400} lh="xs">

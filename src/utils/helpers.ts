@@ -6,13 +6,16 @@ export const getYearsFilterOptions = (): Array<string> => {
   return Array.from({ length: currentYear - firstYear + 1 }, (_, i) => String(currentYear - i));
 };
 
-export const getGenresByIds = (genreIds: Array<number>, genres: Array<Genre>): Array<string> =>
-  genreIds
+export const getGenresByIds = (genreIds: Array<number>, genres: Array<Genre>): Array<string> => {
+  if (!genreIds) return [];
+
+  return genreIds
     .map((id) => {
       const genre = genres.find(({ value }) => value === String(id));
       return genre?.label;
     })
     .filter((genre) => genre) as Array<string>;
+};
 
 export const truncateString = (str: string, num: number): string => {
   if (str.length > num) {
