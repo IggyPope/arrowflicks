@@ -18,7 +18,11 @@ const MovieList = () => {
     dispatch(setPage(currentPage));
   };
 
-  const { data: moviesResponse, isLoading } = useGetFilteredMoviesQuery({
+  const {
+    data: moviesResponse,
+    isLoading,
+    isFetching,
+  } = useGetFilteredMoviesQuery({
     selectedGenres,
     selectedYear,
     ratingFrom,
@@ -30,13 +34,15 @@ const MovieList = () => {
   return (
     <>
       <SimpleGrid cols={2} spacing="md">
-        {moviesResponse?.results?.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+        {moviesResponse?.results.length &&
+          !isLoading &&
+          moviesResponse?.results?.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
       </SimpleGrid>
       <CustomPagination
         page={page}
         setPage={setCurrentPage}
         totalPages={Math.min(moviesResponse?.total_pages || 1, 500)}
-        isLoading={isLoading}
+        isLoading={isFetching}
       />
     </>
   );

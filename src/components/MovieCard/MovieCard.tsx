@@ -1,92 +1,49 @@
-import Image from 'next/image';
+'use client';
+
 import Link from 'next/link';
 
-import { Group, Paper, Stack, Text, useMantineTheme } from '@mantine/core';
+import { Group, Paper, Stack } from '@mantine/core';
 
-import noPosterImage from '@/assets/images/no_poster.png';
-import { API_BASE_URL, API_ROUTES } from '@/constants/app';
-import { useGetGenresQuery } from '@/services/moviesApi';
+import { APP_ROUTES } from '@/constants/app';
 import { Movie } from '@/types';
-import { getGenresByIds, shortenNumber, truncateString } from '@/utils/helpers';
 
 import RateButton from '../buttons/RateButton/RateButton';
-import StarIcon from '../icons/StarIcon';
+import GenresList from './GenresList/GenresList';
 import classes from './MovieCard.module.css';
+import MoviePoster from './MoviePoster/MoviePoster';
 import MovieTitle from './MovieTitle/MovieTitle';
+import RatingBadge from './RatingBadge/RatingBadge';
+import ReleaseYear from './ReleaseYear/ReleaseYear';
 
 interface MovieCardProps {
   movie: Movie;
 }
 
-const MovieCard = ({ movie }: MovieCardProps) => {
-  const theme = useMantineTheme();
-
-  const { data: genresData } = useGetGenresQuery();
-  const genres = getGenresByIds(movie.genre_ids, genresData?.genres || []).join(', ');
-
-  const releaseDate = new Date(movie.release_date);
-  const releaseYear = releaseDate.getFullYear();
-
-  return (
-    <Paper
-      component={Link}
-      href={`/movie/${movie.id}`}
-      maw={482}
-      w="100%"
-      h={218}
-      p="xl"
-      classNames={{ root: classes.paperRoot }}
-    >
-      <Group h="100%" w="100%" justify="space-between" align="flex-start" gap="xxs" wrap="nowrap">
-        <Group h="100%" justify="space-between" align="flex-start" gap="md" wrap="nowrap">
-          <Image
-            width={119}
-            height={170}
-            alt={movie.original_title}
-            placeholder="blur"
-            blurDataURL={noPosterImage.blurDataURL}
-            src={
-              movie.poster_path
-                ? `${API_BASE_URL}${API_ROUTES.IMAGES}${movie.poster_path}`
-                : noPosterImage
-            }
-          />
-          <Stack h="100%" justify="space-between" align="flex-start">
-            <Stack justify="flex-start" align="flex-start" gap="xxs">
-              <MovieTitle>{movie.original_title}</MovieTitle>
-              {!Number.isNaN(releaseYear) && (
-                <Text c={theme.colors.gray[6]} fz="sm" fw={400} lh="xs">
-                  {releaseYear}
-                </Text>
-              )}
-              <Group gap="xxs">
-                <Group gap={4}>
-                  <StarIcon fillColor="yellow" />
-                  <Text fz="sm" fw={600} lh="xs">
-                    {movie.vote_average.toFixed(1)}
-                  </Text>
-                </Group>
-                <Text c={theme.colors.grey[6]} fz="sm" fw={400} lh="xs">
-                  {`(${shortenNumber(movie.vote_count)})`}
-                </Text>
-              </Group>
-            </Stack>
-            {genres.length > 0 && (
-              <Group gap="xxs" wrap="nowrap">
-                <Text c={theme.colors.grey[6]} fz="sm" fw={400} lh="xs">
-                  Genres
-                </Text>
-                <Text fz="sm" fw={400} lh="xs">
-                  {truncateString(genres, 20)}
-                </Text>
-              </Group>
-            )}
+const MovieCard = ({ movie }: MovieCardProps) => (
+  <Paper
+    component={Link}
+    href={`${APP_ROUTES.MOVIES}/${movie.id}`}
+    maw={482}
+    w="100%"
+    h={218}
+    p="xl"
+    classNames={{ root: classes.paperRoot }}
+  >
+    <Group h="100%" w="100%" justify="space-between" align="flex-start" gap="xxs" wrap="nowrap">
+      <Group h="100%" justify="space-between" align="flex-start" gap="md" wrap="nowrap">
+        <MoviePoster movie={movie} size="sm" />
+        <Stack h="100%" justify="space-between" align="flex-start">
+          <Stack justify="flex-start" align="flex-start" gap="xxs">
+            <MovieTitle>{movie.original_title}</MovieTitle>
+            <ReleaseYear releaseDate={movie.release_date} />
+            <RatingBadge voteAverage={movie.vote_average} voteCount={movie.vote_count} />
           </Stack>
-        </Group>
-        <RateButton />
+          <GenresList genreIds={movie.genre_ids} truncateLength={20} />
+        </Stack>
       </Group>
-    </Paper>
-  );
-};
+      <RateButton />
+    </Group>
+  </Paper>
+);
 
 export default MovieCard;

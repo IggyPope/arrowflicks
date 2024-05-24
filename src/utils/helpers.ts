@@ -30,3 +30,9 @@ export const shortenNumber = (num: number): string => {
   }
   return String(num);
 };
+
+export const getDurationFromMinutes = (minutes: number): string => {
+  const fullHours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+  return `${fullHours}h ${remainingMinutes}m`;
+};

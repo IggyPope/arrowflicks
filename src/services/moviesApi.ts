@@ -2,22 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { API_BASE_URL, API_ROUTES } from '@/constants/app';
 import { FiltersState } from '@/store/slices/filtersSlice';
-import { Genre, Movie } from '@/types';
-
-interface Genres {
-  genres: Array<Genre>;
-}
-
-interface GenresResponse {
-  genres: Array<{ id: number; name: string }>;
-}
-
-interface MoviesResponse {
-  page: number;
-  results: Array<Movie>;
-  total_pages: number;
-  total_results: number;
-}
+import { Genres, GenresResponse, MovieDetails, MoviesResponse } from '@/types';
 
 export const moviesApi = createApi({
   reducerPath: 'moviesApi',
@@ -58,7 +43,10 @@ export const moviesApi = createApi({
         return `${API_ROUTES.MOVIES}?page=${page}&${params}`;
       },
     }),
+    getMovieDetails: builder.query<MovieDetails, string>({
+      query: (id) => `${API_ROUTES.MOVIES}/${id}`,
+    }),
   }),
 });
 
-export const { useGetGenresQuery, useGetFilteredMoviesQuery } = moviesApi;
+export const { useGetGenresQuery, useGetFilteredMoviesQuery, useGetMovieDetailsQuery } = moviesApi;
