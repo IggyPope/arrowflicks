@@ -1,0 +1,27 @@
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 18px;
+  height: 18px;
+  padding: 1px;
+
+  color: var(--mantine-color-grey-5);
+
+  &:first-child {
+    transform: rotate(180deg);
+  }
+
+  &:disabled {
+    cursor: default;
+    color: var(--mantine-color-grey-3);
+  }
+
+  @media screen and (hover: hover) {
+    &:active:not(:disabled) {
+      color: var(--mantine-color-purple-5);
+    }
+  }
+}
