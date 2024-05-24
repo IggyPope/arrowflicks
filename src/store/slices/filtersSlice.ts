@@ -113,8 +113,6 @@ export const filtersSlice = createSlice({
       state.selectedYear = initialState.selectedYear;
       state.ratingFrom = initialState.ratingFrom;
       state.ratingTo = initialState.ratingTo;
-      state.sortBy = initialState.sortBy;
-      state.page = initialState.page;
     },
   },
 });
