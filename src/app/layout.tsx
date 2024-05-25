@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Inter } from 'next/font/google';
-
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 
@@ -16,8 +14,6 @@ export const metadata = {
   description: 'ArrowFlicks - the ultimate movie search app!',
 };
 
-const inter = Inter({ subsets: ['latin'] });
-
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang="en">
     <head>
@@ -28,7 +24,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
         content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
       />
     </head>
-    <body className={inter.className}>
+    <body>
       <MantineProvider
         forceColorScheme="light"
         theme={themeOverride}

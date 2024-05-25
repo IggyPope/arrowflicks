@@ -1,11 +1,15 @@
 'use client';
 
+import { Inter } from 'next/font/google';
+
 import { CSSVariablesResolver, createTheme, rem } from '@mantine/core';
 
 import classes from './overrides.module.css';
 
+const inter = Inter({ subsets: ['latin'] });
+
 export const themeOverride = createTheme({
-  fontFamily: 'Inter, sans-serif',
+  fontFamily: inter.style.fontFamily,
   primaryColor: 'purple',
   spacing: {
     xxs: '8px',
