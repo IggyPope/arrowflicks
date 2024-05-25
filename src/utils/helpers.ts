@@ -28,7 +28,7 @@ export const shortenNumber = (num: number): string => {
   if (num > 100000) {
     return `${(num / 1000000).toFixed(1)}M`;
   }
-  if (num > 100) {
+  if (num > 1000) {
     return `${(num / 1000).toFixed(1)}K`;
   }
   return String(num);

@@ -41,6 +41,7 @@ const MovieList = () => {
       <CustomPagination
         page={page}
         setPage={setCurrentPage}
+        align="right"
         totalPages={Math.min(moviesResponse?.total_pages || 1, 500)}
         isLoading={isFetching}
       />

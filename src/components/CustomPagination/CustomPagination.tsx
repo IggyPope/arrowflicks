@@ -5,12 +5,13 @@ import classes from './CustomPagination.module.css';
 interface CustomPaginationProps {
   page: number;
   setPage: (page: number) => void;
+  align: 'center' | 'right';
   totalPages?: number;
-  isLoading: boolean;
+  isLoading?: boolean;
 }
 
 const CustomPagination = (props: CustomPaginationProps) => {
-  const { page, setPage, totalPages, isLoading } = props;
+  const { page, setPage, align, totalPages, isLoading } = props;
 
   const getControlsVisibility = (pageNumber: number) => {
     const leftCutoff = Math.max(1, page === totalPages ? page - 2 : page - 1);
@@ -34,6 +35,11 @@ const CustomPagination = (props: CustomPaginationProps) => {
         root: classes.root,
         control: classes.control,
         dots: classes.dots,
+      }}
+      styles={{
+        root: {
+          justifyContent: align === 'center' ? 'center' : 'flex-end',
+        },
       }}
       getItemProps={getControlsVisibility}
       disabled={isLoading}
