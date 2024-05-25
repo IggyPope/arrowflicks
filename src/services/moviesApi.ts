@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { API_BASE_URL, API_ROUTES } from '@/constants/app';
 import { FiltersState } from '@/store/slices/filtersSlice';
-import { Genres, GenresResponse, MovieDetails, MoviesResponse } from '@/types';
+import { GenreResponse, Genres, GenresResponse, MovieDetails, MoviesResponse } from '@/types';
 
 export const moviesApi = createApi({
   reducerPath: 'moviesApi',
@@ -14,7 +14,7 @@ export const moviesApi = createApi({
       query: () => API_ROUTES.GENRES,
       transformResponse: (response: GenresResponse) => {
         const genres =
-          response.genres?.map(({ id, name }: { id: number; name: string }) => ({
+          response.genres?.map(({ id, name }: GenreResponse) => ({
             value: id.toString(),
             label: name,
           })) || [];

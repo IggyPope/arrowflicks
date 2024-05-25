@@ -28,7 +28,7 @@ const Production = ({ companies }: ProductionProps) => {
                   src={
                     company.logo_path
                       ? `${API_BASE_URL}${API_ROUTES.LOGOS}${company.logo_path}`
-                      : logoPlaceholder
+                      : logoPlaceholder.src
                   }
                 />
               </Center>

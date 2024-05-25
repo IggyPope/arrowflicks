@@ -26,6 +26,8 @@ export interface Movie {
   genre_ids: number[];
 }
 
+export type RatedMovie = Movie & { rating: number };
+
 export interface MoviesResponse {
   page: number;
   results: Array<Movie>;
