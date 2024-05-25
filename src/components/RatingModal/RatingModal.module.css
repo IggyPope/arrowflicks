@@ -1,0 +1,27 @@
+.root {
+  width: 100%;
+  max-width: 380px;
+}
+
+.header {
+  padding: 16px 11px 16px 16px;
+  border-bottom: 1px solid var(--mantine-color-grey-2);
+}
+
+.title {
+  font-size: var(--theme-font-size-sm);
+  line-height: var(--theme-line-height-sm);
+}
+
+.body {
+  padding: 16px;
+
+  @media screen and (max-width: 400px) {
+    padding: 16px 4px;
+  }
+}
+
+.ratingRoot {
+  justify-content: space-between;
+  width: 100%;
+}

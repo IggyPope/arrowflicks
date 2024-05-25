@@ -7,7 +7,7 @@ import { Group, Paper, Stack } from '@mantine/core';
 import { APP_ROUTES } from '@/constants/app';
 import { Movie } from '@/types';
 
-import RateButton from '../buttons/RateButton/RateButton';
+import RateButton from '../buttons/RateButton';
 import GenresList from './GenresList/GenresList';
 import classes from './MovieCard.module.css';
 import MoviePoster from './MoviePoster/MoviePoster';
@@ -41,7 +41,7 @@ const MovieCard = ({ movie }: MovieCardProps) => (
           <GenresList genreIds={movie.genre_ids} truncateLength={20} />
         </Stack>
       </Group>
-      <RateButton />
+      <RateButton movie={movie} />
     </Group>
   </Paper>
 );

@@ -1,5 +1,0 @@
-.button {
-  &:active:not(:disabled) {
-    background-color: var(--mantine-color-purple-2);
-  }
-}

@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 
+import RatingModal from '@/components/RatingModal/RatingModal';
 import '@/styles/globals.css';
 import { themeOverride, resolver } from '@/styles/theme';
 
@@ -33,7 +34,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
         theme={themeOverride}
         cssVariablesResolver={resolver}
       >
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          {children}
+          <RatingModal />
+        </StoreProvider>
       </MantineProvider>
     </body>
   </html>
