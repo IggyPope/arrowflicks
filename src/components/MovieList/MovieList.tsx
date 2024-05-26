@@ -1,4 +1,4 @@
-import { Loader, SimpleGrid, Stack, Title } from '@mantine/core';
+import { Flex, Loader, Stack, Title } from '@mantine/core';
 
 import { useGetFilteredMoviesQuery } from '@/services/moviesApi';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -49,10 +49,10 @@ const MovieList = () => {
 
   return (
     <>
-      <SimpleGrid cols={2} spacing="md">
+      <Flex gap={{ base: 'sm', lg: 'md' }} wrap="wrap" justify="center">
         {moviesResponse?.results.length &&
           moviesResponse?.results?.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
-      </SimpleGrid>
+      </Flex>
       <CustomPagination
         page={page}
         setPage={setCurrentPage}

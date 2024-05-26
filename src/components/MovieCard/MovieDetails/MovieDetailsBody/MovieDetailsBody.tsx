@@ -16,7 +16,7 @@ const MovieDetailsBody = ({ movie }: MovieDetailsBodyProps) => {
   );
 
   return (
-    <Paper maw={800} w="100%" p="xl">
+    <Paper maw={800} w="100%" p={{ base: 'sm', sm: 'xl' }}>
       <Stack w="100%" justify="flex-start" align="flex-start" gap="lg">
         {trailer && <Trailer videoKey={trailer.key} />}
         {movie.overview && <Description description={movie.overview} />}

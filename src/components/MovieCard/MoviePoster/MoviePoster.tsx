@@ -11,8 +11,8 @@ interface MoviePosterProps {
 
 const MoviePoster = ({ movie, size = 'sm' }: MoviePosterProps) => (
   <Image
-    w={size === 'sm' ? 119 : 250}
-    h={size === 'sm' ? 170 : 352}
+    display={{ base: 'none', xs: 'block' }}
+    w={size === 'sm' ? 119 : { base: 200, xs: 250 }}
     alt={movie.original_title}
     fallbackSrc={noPosterImage.src}
     src={

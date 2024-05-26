@@ -16,7 +16,7 @@ const RatingsFilter = () => {
   const { ratingFrom, ratingTo } = useAppSelector((state) => state.filters);
 
   return (
-    <Flex gap="xxs" align="flex-end">
+    <Flex gap="xxs" align="flex-end" flex="1 1 100%" w="100%">
       <RatingInput
         label="Ratings"
         placeHolder="From"

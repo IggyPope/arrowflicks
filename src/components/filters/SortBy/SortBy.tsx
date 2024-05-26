@@ -14,6 +14,7 @@ const SortBy = () => {
   return (
     <Select
       label="Sort by"
+      w={{ base: '100%', sm: 'auto' }}
       data={API_SORT_OPTIONS}
       value={sortBy}
       allowDeselect={false}

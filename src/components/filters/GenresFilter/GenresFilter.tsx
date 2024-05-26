@@ -16,6 +16,8 @@ const GenresFilter = () => {
 
   return (
     <MultiSelect
+      flex="1 1 100%"
+      w="100%"
       label="Genres"
       placeholder={selectedGenres.length ? '' : 'Select genre'}
       data={data?.genres}

@@ -28,10 +28,10 @@ const GenresList = ({ genreIds, truncateLength }: GenresListProps) => {
 
   return (
     <Group gap="xxs" wrap="nowrap">
-      <Text c={theme.colors.grey[6]} fz="sm" fw={400} lh="xs">
+      <Text c={theme.colors.grey[6]} fz={{ base: 'xs', xs: 'sm' }} fw={400} lh="xs">
         Genres
       </Text>
-      <Text fz="sm" fw={400} lh="xs">
+      <Text fz={{ base: 'xs', xs: 'sm' }} fw={400} lh="xs">
         {truncateLength ? truncateString(genresString, truncateLength) : genresString}
       </Text>
     </Group>

@@ -11,7 +11,7 @@ const Duration = ({ duration }: DurationProps) => {
 
   return (
     <Group align="flex-start" gap="xxs" wrap="nowrap">
-      <Text w={140} c={theme.colors.grey[6]} fz="sm" fw={400} lh="xs">
+      <Text w={{ base: 90, sm: 140 }} c={theme.colors.grey[6]} fz="sm" fw={400} lh="xs">
         Duration
       </Text>
       <Text fz="sm" fw={400} lh="xs">

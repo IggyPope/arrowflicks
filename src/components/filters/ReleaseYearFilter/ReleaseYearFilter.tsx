@@ -21,6 +21,8 @@ const ReleaseYearFilter = () => {
 
   return (
     <Select
+      flex="1 1 100%"
+      w="100%"
       label="Release year"
       placeholder="Select release year"
       data={yearOptions}

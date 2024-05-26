@@ -16,20 +16,32 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AppShell
-      navbar={{ width: 280, breakpoint: 'sm', collapsed: { mobile: !opened } }}
-      padding="40px"
+      navbar={{
+        width: {
+          sm: 200,
+          lg: 280,
+        },
+        breakpoint: 'md',
+        collapsed: { mobile: !opened },
+      }}
+      padding={{ base: 'md', lg: 'xxl' }}
     >
       <Burger
         opened={opened}
         onClick={toggle}
-        hiddenFrom="sm"
+        hiddenFrom="md"
         size="md"
         pos="absolute"
         right="24px"
         top="24px"
         style={{ zIndex: 'calc(var(--mantine-z-index-overlay) - 1)' }}
       />
-      <AppShell.Navbar p="xl" bg={theme.colors.purple[1]} withBorder={false}>
+      <AppShell.Navbar
+        py="xl"
+        px={{ base: 'xs', lg: 'xl' }}
+        bg={theme.colors.purple[1]}
+        withBorder={false}
+      >
         <Stack gap="80px">
           <Logo />
           <Stack gap="md">
@@ -38,7 +50,10 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           </Stack>
         </Stack>
       </AppShell.Navbar>
-      <AppShell.Main mih="100vh" display="flex">
+      <AppShell.Main
+        mih="100vh"
+        styles={{ main: { display: 'flex', flexDirection: 'column', alignItems: 'center' } }}
+      >
         {children}
       </AppShell.Main>
     </AppShell>
