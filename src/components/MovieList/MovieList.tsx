@@ -1,4 +1,4 @@
-import { SimpleGrid } from '@mantine/core';
+import { SimpleGrid, Stack, Title } from '@mantine/core';
 
 import { useGetFilteredMoviesQuery } from '@/services/moviesApi';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -6,6 +6,7 @@ import { setPage } from '@/store/slices/filtersSlice';
 
 import CustomPagination from '../CustomPagination/CustomPagination';
 import MovieCard from '../MovieCard/MovieCard';
+import NoSuchMovies from '../icons/NoSuchMovies';
 
 const MovieList = () => {
   const { selectedGenres, selectedYear, ratingFrom, ratingTo, sortBy, page } = useAppSelector(
@@ -30,6 +31,17 @@ const MovieList = () => {
     sortBy,
     page,
   });
+
+  if (!moviesResponse?.results.length && !isFetching) {
+    return (
+      <Stack gap="md" w="100%" align="center">
+        <NoSuchMovies />
+        <Title order={4} fz="md" lh="xs" fw={600}>
+          We don`t have such movies, look for another one
+        </Title>
+      </Stack>
+    );
+  }
 
   return (
     <>

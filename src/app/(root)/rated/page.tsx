@@ -78,7 +78,7 @@ const RatedPage = () => {
       <CustomPagination page={page} align="center" setPage={setPage} totalPages={totalPages} />
     </Stack>
   ) : (
-    <Stack w="100%" h="100%" gap="md" align="center">
+    <Stack w="100%" h="100%" gap="md" justify="center" align="center">
       <Image maw={400} w="100%" src={noRatedMoviesImage.src} alt="no rated movies" />
       <Title fz="md" lh="xs" fw={600}>
         You haven`t rated any films yet

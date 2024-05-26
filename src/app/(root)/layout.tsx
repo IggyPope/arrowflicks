@@ -38,7 +38,9 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           </Stack>
         </Stack>
       </AppShell.Navbar>
-      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Main mih="100vh" display="flex">
+        {children}
+      </AppShell.Main>
     </AppShell>
   );
 };
