@@ -16,6 +16,9 @@ const SearchField = ({ value, setValue, onSearchSubmit }: SearchFieldProps) => (
     placeholder="Search movie title"
     maw={490}
     w="100%"
+    size="md"
+    fz="xs"
+    styles={{ input: { fontSize: '14px' } }}
     leftSection={<SearchIcon />}
     rightSection={
       <Button h={32} px="md" onClick={onSearchSubmit}>

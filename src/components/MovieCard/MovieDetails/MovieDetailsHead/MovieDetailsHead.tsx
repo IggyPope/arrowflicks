@@ -1,4 +1,4 @@
-import { Group, Paper, Stack } from '@mantine/core';
+import { Flex, Paper, Stack } from '@mantine/core';
 
 import { Movie, MovieDetails } from '@/types';
 
@@ -29,9 +29,21 @@ const MovieDetailsHead = ({ movie }: MovieDetailsHeadProps) => {
   };
 
   return (
-    <Paper maw={800} w="100%" h={400} p="xl" classNames={{ root: classes.root }}>
-      <Group flex="1 0 0" justify="space-between" align="flex-start" gap="md" wrap="nowrap">
-        <Group h="100%" justify="space-between" align="flex-start" gap="md" wrap="nowrap">
+    <Paper maw={800} w="100%" p={{ base: 'sm', sm: 'xl' }} classNames={{ root: classes.root }}>
+      <Flex
+        justify="space-between"
+        align="flex-start"
+        gap={{ base: 'xxs', sm: 'md' }}
+        wrap="nowrap"
+      >
+        <Flex
+          h="100%"
+          direction={{ base: 'column', xs: 'row' }}
+          justify="space-between"
+          align="flex-start"
+          gap={{ base: 'sm', sm: 'md' }}
+          wrap="nowrap"
+        >
           <MoviePoster movie={movie} size="lg" />
           <Stack h="100%" justify="space-between" align="flex-start">
             <Stack justify="flex-start" align="flex-start" gap="xxs">
@@ -47,9 +59,9 @@ const MovieDetailsHead = ({ movie }: MovieDetailsHeadProps) => {
               <DetailsGenresList genres={movie.genres} />
             </Stack>
           </Stack>
-        </Group>
+        </Flex>
         <RateButton movie={modalMovie} />
-      </Group>
+      </Flex>
     </Paper>
   );
 };

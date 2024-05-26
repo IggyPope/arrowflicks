@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { Button, Group, Image, SimpleGrid, Stack, Title } from '@mantine/core';
+import { Button, Flex, Image, SimpleGrid, Stack, Title } from '@mantine/core';
 
 import noRatedMoviesImage from '@/assets/images/no_rated_movies.svg';
 import CustomPagination from '@/components/CustomPagination/CustomPagination';
@@ -63,22 +63,27 @@ const RatedPage = () => {
 
   return ratedMovies.length ? (
     <Stack gap="xxl" maw={980} w="100%">
-      <Group justify="space-between">
+      <Flex
+        justify="space-between"
+        gap={{ base: 'md', md: 'lg' }}
+        align={{ base: 'flex-start', md: 'center' }}
+        direction={{ base: 'column', md: 'row' }}
+      >
         <Title lh="48px">Rated movies</Title>
         <SearchField
           value={searchValue}
           setValue={setSearchValue}
           onSearchSubmit={handleSearchSubmit}
         />
-      </Group>
-      <SimpleGrid cols={2} spacing="md">
+      </Flex>
+      <SimpleGrid cols={{ base: 1, lg: 2 }} spacing={{ base: 'xs', xl: 'md' }}>
         {moviesOnPage.length &&
           moviesOnPage.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
       </SimpleGrid>
       <CustomPagination page={page} align="center" setPage={setPage} totalPages={totalPages} />
     </Stack>
   ) : (
-    <Stack w="100%" h="100%" gap="md" align="center">
+    <Stack w="100%" h="100%" gap="md" justify="center" align="center">
       <Image maw={400} w="100%" src={noRatedMoviesImage.src} alt="no rated movies" />
       <Title fz="md" lh="xs" fw={600}>
         You haven`t rated any films yet

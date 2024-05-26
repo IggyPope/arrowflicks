@@ -77,7 +77,7 @@
   }
 
   @media screen and (hover: hover) {
-    &:hover {
+    &:hover:not(:disabled) {
       color: var(--mantine-color-purple-4);
     }
   }

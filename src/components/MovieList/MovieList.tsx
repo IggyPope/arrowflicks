@@ -1,4 +1,4 @@
-import { SimpleGrid } from '@mantine/core';
+import { Flex, Loader, Stack, Title } from '@mantine/core';
 
 import { useGetFilteredMoviesQuery } from '@/services/moviesApi';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -6,6 +6,7 @@ import { setPage } from '@/store/slices/filtersSlice';
 
 import CustomPagination from '../CustomPagination/CustomPagination';
 import MovieCard from '../MovieCard/MovieCard';
+import NoSuchMovies from '../icons/NoSuchMovies';
 
 const MovieList = () => {
   const { selectedGenres, selectedYear, ratingFrom, ratingTo, sortBy, page } = useAppSelector(
@@ -18,11 +19,7 @@ const MovieList = () => {
     dispatch(setPage(currentPage));
   };
 
-  const {
-    data: moviesResponse,
-    isLoading,
-    isFetching,
-  } = useGetFilteredMoviesQuery({
+  const { data: moviesResponse, isFetching } = useGetFilteredMoviesQuery({
     selectedGenres,
     selectedYear,
     ratingFrom,
@@ -31,13 +28,31 @@ const MovieList = () => {
     page,
   });
 
+  if (!moviesResponse?.results.length && !isFetching) {
+    return (
+      <Stack gap="md" w="100%" align="center">
+        <NoSuchMovies />
+        <Title order={4} fz="md" lh="xs" fw={600}>
+          We don`t have such movies, look for another one
+        </Title>
+      </Stack>
+    );
+  }
+
+  if (isFetching) {
+    return (
+      <Stack gap="md" w="100%" align="center">
+        <Loader size="xl" />
+      </Stack>
+    );
+  }
+
   return (
     <>
-      <SimpleGrid cols={2} spacing="md">
+      <Flex gap={{ base: 'sm', lg: 'md' }} wrap="wrap" justify="center">
         {moviesResponse?.results.length &&
-          !isLoading &&
           moviesResponse?.results?.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
-      </SimpleGrid>
+      </Flex>
       <CustomPagination
         page={page}
         setPage={setCurrentPage}
