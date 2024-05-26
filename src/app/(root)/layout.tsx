@@ -24,7 +24,12 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         breakpoint: 'md',
         collapsed: { mobile: !opened },
       }}
+      mih="100dvh"
+      h="100%"
       padding={{ base: 'md', lg: 'xxl' }}
+      styles={{
+        main: { minHeight: '100%', height: '100%' },
+      }}
     >
       <Burger
         opened={opened}
@@ -51,7 +56,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         </Stack>
       </AppShell.Navbar>
       <AppShell.Main
-        mih="100vh"
         styles={{ main: { display: 'flex', flexDirection: 'column', alignItems: 'center' } }}
       >
         {children}

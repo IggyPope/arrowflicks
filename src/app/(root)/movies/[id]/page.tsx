@@ -1,6 +1,6 @@
 'use client';
 
-import { Anchor, Breadcrumbs, Stack, Title } from '@mantine/core';
+import { Anchor, Breadcrumbs, Center, Loader, Stack } from '@mantine/core';
 
 import MovieDetailsBody from '@/components/MovieCard/MovieDetails/MovieDetailsBody/MovieDetailsBody';
 import MovieDetailsHead from '@/components/MovieCard/MovieDetails/MovieDetailsHead/MovieDetailsHead';
@@ -26,7 +26,11 @@ const MoviePage = ({ params }: { params: { id: string } }) => {
       </Stack>
     );
   }
-  return <Title>Loading...</Title>;
+  return (
+    <Center h="100%">
+      <Loader size="xl" />
+    </Center>
+  );
 };
 
 export default MoviePage;
