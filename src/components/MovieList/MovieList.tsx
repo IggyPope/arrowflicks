@@ -1,4 +1,4 @@
-import { SimpleGrid, Stack, Title } from '@mantine/core';
+import { Loader, SimpleGrid, Stack, Title } from '@mantine/core';
 
 import { useGetFilteredMoviesQuery } from '@/services/moviesApi';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -19,11 +19,7 @@ const MovieList = () => {
     dispatch(setPage(currentPage));
   };
 
-  const {
-    data: moviesResponse,
-    isLoading,
-    isFetching,
-  } = useGetFilteredMoviesQuery({
+  const { data: moviesResponse, isFetching } = useGetFilteredMoviesQuery({
     selectedGenres,
     selectedYear,
     ratingFrom,
@@ -43,11 +39,18 @@ const MovieList = () => {
     );
   }
 
+  if (isFetching) {
+    return (
+      <Stack gap="md" w="100%" align="center">
+        <Loader size="xl" />
+      </Stack>
+    );
+  }
+
   return (
     <>
       <SimpleGrid cols={2} spacing="md">
         {moviesResponse?.results.length &&
-          !isLoading &&
           moviesResponse?.results?.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
       </SimpleGrid>
       <CustomPagination
