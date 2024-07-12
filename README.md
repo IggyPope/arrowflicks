@@ -1,12 +1,16 @@
-# npm scripts
+# Movie search app
+- Built with [Next.js](https://nextjs.org/docs), [Redux Toolkit](https://redux-toolkit.js.org/), [Mantine](https://mantine.dev/);
+- Deploy: [https://arrowflicks.vercel.app/](https://arrowflicks.vercel.app/)
+- Data fetched from [TMDB API](https://developer.themoviedb.org/reference/intro/getting-started)
 
-## Build and dev scripts
+## npm scripts
+
+### Build and dev scripts
 
 - `dev` – start dev server
 - `build` – bundle application for production
-- `analyze` – analyzes application bundle with [@next/bundle-analyzer](https://www.npmjs.com/package/@next/bundle-analyzer)
 
-## Linting scripts
+### Linting scripts
 
 - `typecheck` – checks TypeScript types
 - `lint` – runs ESLint and StyleLint
